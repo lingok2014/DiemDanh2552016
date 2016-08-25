@@ -215,6 +215,12 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\aspnet-QuanLyDiemDanh-20160825082628.mdf" />
+    <Content Include="App_Data\aspnet-QuanLyDiemDanh-20160825082628_log.ldf">
+      <DependentUpon>aspnet-QuanLyDiemDanh-20160825082628.mdf</DependentUpon>
+    </Content>
+    <Content Include="Common\Page.js" />
+    <Content Include="Common\XuLy.js" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
@@ -236,10 +242,29 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jqueryUI\AUTHORS.txt" />
+    <Content Include="Scripts\jqueryUI\external\jquery\jquery.js" />
+    <Content Include="Scripts\jqueryUI\images\ui-icons_444444_256x240.png" />
+    <Content Include="Scripts\jqueryUI\images\ui-icons_555555_256x240.png" />
+    <Content Include="Scripts\jqueryUI\images\ui-icons_777620_256x240.png" />
+    <Content Include="Scripts\jqueryUI\images\ui-icons_777777_256x240.png" />
+    <Content Include="Scripts\jqueryUI\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Scripts\jqueryUI\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Scripts\jqueryUI\index.html" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.css" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.js" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.min.css" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.min.js" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.structure.css" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.structure.min.css" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.theme.css" />
+    <Content Include="Scripts\jqueryUI\jquery-ui.theme.min.css" />
+    <Content Include="Scripts\jqueryUI\LICENSE.txt" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\jqueryUI\package.json" />
     <None Include="Service References\Demo\configuration91.svcinfo" />
     <None Include="Service References\Demo\configuration.svcinfo" />
     <Content Include="Service References\Demo\QuanLyDiemDanh.Demo.vouchers.datasource">
@@ -285,9 +310,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="Service References\Demo\aspsmsx2.wsdl" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

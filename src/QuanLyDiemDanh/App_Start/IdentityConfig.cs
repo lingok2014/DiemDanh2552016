@@ -17,7 +17,8 @@ namespace QuanLyDiemDanh
     public class EmailService : IIdentityMessageService
     {
         public Task SendAsync(IdentityMessage message)
-        { // Plug in your SMS service here to send a text message.
+        {
+            // Plug in your SMS service here to send a text message.
             var soapSms = new Demo.ASPSMSX2SoapClient("ASPSMSX2Soap");
             soapSms.SendSimpleTextSMS(
                 System.Configuration.ConfigurationManager.AppSettings["ASPSMSUSERKEY"],
@@ -28,7 +29,7 @@ namespace QuanLyDiemDanh
             soapSms.Close();
             return Task.FromResult(0);
             // Plug in your email service here to send an email.
-      
+
         }
     }
 
@@ -49,7 +50,7 @@ namespace QuanLyDiemDanh
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context)
         {
             var manager = new ApplicationUserManager(new UserStore<ApplicationUser>(context.Get<ApplicationDbContext>()));
             // Configure validation logic for usernames
@@ -90,7 +91,7 @@ namespace QuanLyDiemDanh
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
+                manager.UserTokenProvider =
                     new DataProtectorTokenProvider<ApplicationUser>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
