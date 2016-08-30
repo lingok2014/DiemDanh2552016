@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="05989f129c454a04bd7e59722e5ddb08" Name="Diagram1">
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.ChuongTrinh" Width="1.5" PointX="1.5" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.DiemDanh" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.GiaoVien" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.LopHocPhan" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.LopHocPhan_SinhVien" Width="1.5" PointX="8.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.MonHoc" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.SinhVien" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DiemDanhSinhVienModel.sysdiagram" Width="1.5" PointX="0.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="DiemDanhSinhVienModel.FK_MonHoc_ChuongTrinh" ManuallyRouted="false" />
+        <AssociationConnector Association="DiemDanhSinhVienModel.FK_DiemDanh_GiaoVien" ManuallyRouted="false" />
+        <AssociationConnector Association="DiemDanhSinhVienModel.FK_DiemDanh_LopHocPhan_SinhVien" ManuallyRouted="false" />
+        <AssociationConnector Association="DiemDanhSinhVienModel.FK_LopHocPhan_GiaoVien" ManuallyRouted="false" />
+        <AssociationConnector Association="DiemDanhSinhVienModel.FK_LopHocPhan_MonHoc" ManuallyRouted="false" />
+        <AssociationConnector Association="DiemDanhSinhVienModel.FK_LopHocPhan_SinhVien_LopHocPhan1" ManuallyRouted="false" />
+        <AssociationConnector Association="DiemDanhSinhVienModel.FK_LopHocPhan_SinhVien_SinhVien" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<QuanLyDiemDanh.Models.GiaoVien>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.gv_ten)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gv_email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gv_sdt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gv_bangcap)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gv_tendangnhap)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.gv_ten)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gv_email)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gv_sdt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gv_bangcap)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.gv_tendangnhap)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.gv_ma }) |
+            @Html.ActionLink("Details", "Details", new { id=item.gv_ma }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.gv_ma })
+        </td>
+    </tr>
+}
+
+</table>
