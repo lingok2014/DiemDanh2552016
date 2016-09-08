@@ -14,6 +14,51 @@ namespace QuanLyDiemDanh.Models
     
     public partial class DiemDanh
     {
+        //public DiemDanh( long lopsv_stt,string lopsv_phong,int buoihoc,DateTime dd_ngay,bool dd_vang,string lydo,string gv_ma)
+        //{
+        //    this.lopsv_stt = lopsv_stt;
+        //    this.dd_phong = lopsv_phong;
+        //    this.dd_ngay = dd_ngay;
+        //    this.dd_vang = dd_vang;
+        //    this.dd_lydo = lydo;
+        //    this.gv_ma = gv_ma;
+        //    this.buoihoc = buoihoc;
+        //}
+        //public DiemDanh(long ds_stt,long lopsv_stt, string lopsv_phong, int buoihoc, DateTime dd_ngay, bool dd_vang, string lydo, string gv_ma)
+        //{
+        //    this.dd_stt = dd_stt;
+        //    this.lopsv_stt = lopsv_stt;
+        //    this.dd_phong = lopsv_phong;
+        //    this.dd_ngay = dd_ngay;
+        //    this.dd_vang = dd_vang;
+        //    this.dd_lydo = lydo;
+        //    this.gv_ma = gv_ma;
+        //    this.buoihoc = buoihoc;
+        //}
+        public DiemDanh(long lopsv_ma, string dd_phong, int buoihoc, DateTime dd_ngay, bool dd_vang, string dd_lydo, string gv_ma)
+        {
+            this.lopsv_stt = lopsv_ma;
+            this.dd_phong = dd_phong;
+            this.buoihoc = buoihoc;
+            this.dd_ngay = dd_ngay;
+            this.dd_vang = dd_vang;
+            this.dd_lydo = dd_lydo;
+            this.gv_ma = gv_ma;
+        }
+
+
+        public DiemDanh(long dd_stt, long lopsv_ma, string dd_phong, int buoihoc, DateTime dd_ngay, bool dd_vang, string dd_lydo, string gv_ma)
+        {
+            this.dd_stt = dd_stt;
+            this.lopsv_stt = lopsv_ma;
+            this.dd_phong = dd_phong;
+            this.buoihoc = buoihoc;
+            this.dd_ngay = dd_ngay;
+            this.dd_vang = dd_vang;
+            this.dd_lydo = dd_lydo;
+            this.gv_ma = gv_ma;
+        }
+
         public long lopsv_stt { get; set; }
         public int buoihoc { get; set; }
         public long dd_stt { get; set; }

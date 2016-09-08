@@ -1,0 +1,19 @@
+﻿@inherits System.Web.Mvc.WebViewPage
+@using DevExpress.Web.Mvc.UI;
+@Html.DevExpress().ReportViewer(settings =>
+{
+    settings.Name = "ReportViewer1";
+    settings.EnableReportMargins = true;
+    settings.Report = (QuanLyDiemDanh.RptdsGiaoVien)ViewData["baocao"];
+    settings.CallbackRouteValues =
+    new
+    {
+        Controller = "Reports",
+        Action = "DanhSachGiaoVienPartial"
+    };
+    settings.ExportRouteValues = new
+    {
+        Controller = "Reports",
+        Action = "ExportReportView"
+    };
+}).GetHtml()

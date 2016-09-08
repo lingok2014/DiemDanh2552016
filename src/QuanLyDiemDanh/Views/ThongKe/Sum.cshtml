@@ -1,0 +1,99 @@
+﻿
+@model IEnumerable<QuanLyDiemDanh.Models.DiemDanh>
+@{
+    ViewBag.Title = "Điểm danh sinh viên";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script>
+    $(document).ready(function ()
+    {
+        $('#lop_ma').autocomplete({
+            source: '@Url.Action("getMaLop")'
+        });
+        $('#lop_ma').keypress(function () {
+            if ($('#lop_ma').val() == "")
+                $('#tableTongKe').html("");
+        });
+        $('#showStudents').click(function () {
+            $.ajax({
+                url: '@Url.Action("getSum")',
+                dataType: "json",
+                data: {
+                    term: $('#lop_ma').val(),
+                },
+                success: function (data) {
+
+                    if (data.length != 0) {
+                        var dsSinhVien = data[0];
+                        var tongsoSinhVien = dsSinhVien.length;
+                        var str = "";
+                        str += "<table id='dsSinhVien' class='table table-bordered'>";
+                        str += "<thead><tr>";
+                        str += "<th>Mã thứ tự</th><th>MSSV</th><th>Họ tên sinh viên</th><th>Có mặt</th><th>Vắng mặt</th></tr></thead>";
+                        str += "</tr></thead>";
+                        str += "<tbody>";
+                        for (i = 0; i < tongsoSinhVien; i++) {
+                            var thongkeTheoSV = data[i + 1];
+                            str += "<tr>";
+                            str += "<td align='center'>" + [i+1]+ "</td>";
+                            str += "<td align='center'>" + dsSinhVien[i][0] + "</td>";
+                            str += "<td align='center'>" + dsSinhVien[i][1] + "</td>";
+                            str += "<td align='center'>" + thongkeTheoSV[0] + "</td>";
+                            str += "<td align='center'>" + thongkeTheoSV[1] + "</td>";
+                            str += "</tr>";
+                        }
+                        str += "</tbody>";
+                        str += "</table>";
+                        $('#tableThongKe').html(str);
+
+                        $('#dsSinhVien').DataTable({
+                            responsive: true,
+                            "language": {
+                                "lengthMenu": "Hiển thị _MENU_ dòng dữ liệu trên một trang",
+                                "info": "Hiển thị _START_ trong tổng số _TOTAL_ dòng dữ liệu",
+                                "infoEmpty": "Dữ liệu rỗng",
+                                "emptyTable": "Chưa có dữ liệu nào",
+                                "processing": "Đang xử lý...",
+                                "search": "Tìm kiếm:",
+                                "loadingRecords": "Đang load dữ liệu...",
+                                "zeroRecords": "không tìm thấy dữ liệu",
+                                "infoFiltered": "(Được từ tổng số _MAX_ dòng dữ liệu)",
+                                "paginate": {
+                                    "first": "|<",
+                                    "last": ">|",
+                                    "next": ">>",
+                                    "previous": "<<"
+                                }
+                            },
+                            "lengthMenu": [[5, 10, 15, 20, 25, 50, 100, -1], [5, 10, 15, 20, 25, 50, 100, "Tất cả"]]
+                        });
+                    }
+                    else
+                        $('#tableThongKe').html("<hr><b style='color:red'>Lớp này chưa điểm danh</b><hr>");
+                }
+            });
+        });
+    })
+</script>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        <hr />
+        <div class="form-group">
+            @Html.Label("", "Mã lớp:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("lop_ma", "", new { @class = "form-control" })<hr />
+                <input type="button" id="showStudents" value="Thống kê" class="btn btn-default btn-primary" />
+            </div>
+        </div>
+        @*<div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                </div>
+            </div>*@
+        <div id="tableThongKe">
+        </div>
+    </div>
+}
+

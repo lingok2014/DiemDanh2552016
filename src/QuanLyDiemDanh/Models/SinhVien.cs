@@ -19,7 +19,13 @@ namespace QuanLyDiemDanh.Models
         {
             this.LopHocPhan_SinhVien = new HashSet<LopHocPhan_SinhVien>();
         }
-    
+        public SinhVien(string a, string b, string c)
+        {
+            this.sv_ma = a;
+            this.sv_portalID = b;
+            this.sv_ten = c;
+        }
+
         public string sv_ma { get; set; }
         public string sv_portalID { get; set; }
         public string sv_ten { get; set; }

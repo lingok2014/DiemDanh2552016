@@ -1,0 +1,127 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#dd_ngay").datepicker();
+
+        $('#lop_ma').autocomplete({
+            source: '@Url.Action("getMaLop")'
+        });
+
+        $('#showStudents').click(function () {
+            $.ajax({
+                url: '@Url.Action("getDanhSachSinhVien")',
+                dataType: "json",
+                data: {
+                    term: $('#lop_ma').val(),
+                },
+                success: function (data) {
+
+                    if (data.length != 0) {
+                        var str = "";
+                        str += "<table id='dsSinhVien' class='table table-bordered'>";
+                        str += "<thead><tr>";
+                        str += "<th>Mã số sinh viên</th><th>Portal ID</th><th>Họ tên sinh viên</th><th>Vắng</th><th>Lý do</th></tr></thead>";
+                        str += "<tbody>";
+                        for (i = 0; i < data.length; i++) {
+                            str += "<tr>";
+                            str += "<td>" + data[i].sv_ma + "</td>";
+                            str += "<td>" + data[i].sv_portalID + "</td>";
+                            str += "<td>" + data[i].sv_ten + "</td>";
+                            str += "<td><input type='checkbox' name='chk[]' class='chkElements' value='" + data[i].sv_ma + "' /></td>";
+                            str += "<td><input type='textbox' class='form-control' name='dd_lydo" + data[i].sv_ma + "' value='' /></td>";
+                            str += "</tr>";
+                        }
+                        str += "</tbody>";
+                        str += "</table>";
+                        $('#tableSinhVien').html(str);
+
+                        $('#dsSinhVien').DataTable({
+                            responsive: true,
+                            "language": {
+                                "lengthMenu": "Hiển thị _MENU_ dòng dữ liệu trên một trang",
+                                "info": "Hiển thị _START_ trong tổng số _TOTAL_ dòng dữ liệu",
+                                "infoEmpty": "Dữ liệu rỗng",
+                                "emptyTable": "Chưa có dữ liệu nào",
+                                "processing": "Đang xử lý...",
+                                "search": "Tìm kiếm:",
+                                "loadingRecords": "Đang load dữ liệu...",
+                                "zeroRecords": "không tìm thấy dữ liệu",
+                                "infoFiltered": "(Được từ tổng số _MAX_ dòng dữ liệu)",
+                                "paginate": {
+                                    "first": "|<",
+                                    "last": ">|",
+                                    "next": ">>",
+                                    "previous": "<<"
+                                }
+                            },
+                            "lengthMenu": [[5, 10, 15, 20, 25, 50, 100, -1], [5, 10, 15, 20, 25, 50, 100, "Tất cả"]]
+                        });
+                    }
+                    else
+                        $('#tableSinhVien').html("<hr><b style='color:red'>Không tìm thấy sinh viên nào</b><hr>");
+                }
+            });
+        });
+    });
+</script>
+
+
+<h2>Điểm danh sinh viên</h2>
+<hr />
+
+
+@using (Html.BeginForm("Index","DiemDanh",FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationMessage("Error")
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("", "Ngày học:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("dd_ngay", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("", "Phòng học:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("dd_phong", null, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("", "Buổi:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("dd_buoihoc", null, new { @class = "form-control",@type= "number" })
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.Label("", "Mã lớp:", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBox("lop_ma", "", new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" id="showStudents" value="Danh sách" class="btn btn-default btn-primary" />
+                <input type="submit" value="Điểm danh" name="btnAdd" class="btn btn-default btn-danger" />
+            </div>
+        </div>
+
+        <div id="tableSinhVien">
+        </div>
+    </div>
+}
+
